@@ -16,7 +16,8 @@ public class matrixDistance {
 	public static void main(String[] args) {
 		int[] x = {0, 0, 1, 4, 7, 14, 26, 23, 8, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0};
 		int[] y = {0, 0, 0, 0, 0, 0, 1, 5, 6, 13, 25, 24, 9, 4, 2, 1, 0, 0, 0, 0};
-		
+//		int[] x = new int[] { 1, 2, 2, 3, 4, 4, 1, 0 };
+//		int[] y = new int[] { 0, 1, 2, 2, 3, 4, 3, 2, 1 };
 		int[][] distanceMatrix = getDistanceMatrix(x, y);
 		
 //		print2Tex(distanceMatrix);
@@ -99,6 +100,7 @@ public class matrixDistance {
 	 * preferably we move downright 
 	 * @param m
 	 * @return list of pairs of coordinates of shortest path from top-left (0,0) to bottom-right (n,n)
+	 * i.e read (2,3) as go 2 down and 3 right
 	 */
 	public static List<List<Integer>> getShortestPath(int[][] m) {
 		List<List<Integer>> path = new LinkedList<List<Integer>>();
