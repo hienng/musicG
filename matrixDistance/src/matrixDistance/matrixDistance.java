@@ -16,8 +16,6 @@ public class matrixDistance {
 	public static void main(String[] args) {
 		int[] x = {0, 0, 1, 4, 7, 14, 26, 23, 8, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0};
 		int[] y = {0, 0, 0, 0, 0, 0, 1, 5, 6, 13, 25, 24, 9, 4, 2, 1, 0, 0, 0, 0};
-//		int[] x = new int[] { 1, 2, 2, 3, 4, 4, 1, 0 };
-//		int[] y = new int[] { 0, 1, 2, 2, 3, 4, 3, 2, 1 };
 		int[][] distanceMatrix = getDistanceMatrix(x, y);
 		
 //		print2Tex(distanceMatrix);
