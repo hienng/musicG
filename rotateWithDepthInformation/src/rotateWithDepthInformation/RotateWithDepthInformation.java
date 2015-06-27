@@ -5,6 +5,11 @@ import ij.IJ;
 import ij.io.FileSaver;
 import java.awt.Color;
 
+/*
+ * author: Hien Nguyen, Daniel Hudlet
+ * sheet: 9, exercise: 1
+ */
+
 public class RotateWithDepthInformation {
 	
 	/**
