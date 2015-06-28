@@ -11,6 +11,7 @@ import java.awt.Color;
  */
 
 public class RotateWithDepthInformation {
+	int[][] z;
 	
 	/**
 	 * calculate z-value: depth information from the heatmap
@@ -36,7 +37,7 @@ public class RotateWithDepthInformation {
 	 * @return rotated z-value
 	 */
 	public static double rotate45degrees (int axis, int zVal) {
-		return (Math.sqrt(axis*axis)/2) + (Math.sqrt(zVal * zVal)/2);
+		return (axis + (Math.sqrt(zVal * zVal)/2));
 	}
 	
 	/**
@@ -46,19 +47,17 @@ public class RotateWithDepthInformation {
 	 * @return rotated image 
 	 */
 	public static ImagePlus rotate(ImagePlus orig, ImagePlus heat) {
-		ImagePlus out = IJ.createImage("rotated", orig.getWidth(), orig.getHeight(), 1, orig.getBitDepth());
-		if(orig.getWidth() == heat.getWidth() && orig.getHeight() == heat.getHeight()) {
+		int fac = 1020/100;
+		ImagePlus out = IJ.createImage("rotated", "RGB_white", orig.getWidth(), orig.getHeight(), 1);
 			for(int x = 0; x < orig.getWidth(); x++) {
 				for(int y = 0; y < orig.getHeight(); y++) {
 					int[] rgb = heat.getPixel(x, y);
-					int z = (zValue(rgb[0], rgb[1], rgb[2]) * 100) / 1020;
-//					System.out.println(z);
+					int z = zValue(rgb[0], rgb[1], rgb[2]) / fac;
 					double newX = rotate45degrees(x, z);
 					double newY = rotate45degrees(y, z);
 					out.getProcessor().putPixel((int) newX, (int) newY, orig.getPixel(x, y));
 				}
 			}
-		}
 		return out;
 	}
 		
@@ -72,16 +71,15 @@ public class RotateWithDepthInformation {
 		
 		ImagePlus rotated = rotate(orig, heatmap);
 		rotated.getProcessor().setColor(c);
-		rotated.getProcessor().drawString("Hien & Daniel", 100, 500);
+		rotated.getProcessor().drawString("Hien & Daniel", 100, 400);
 		rotated.show();
 		new FileSaver(rotated).saveAsPng("Tiefenbilder/out/rotatedKey.png");
 
 		ImagePlus rotated2 = rotate(orig2, heatmap2);
 		rotated2.getProcessor().setColor(c);
-		rotated2.getProcessor().drawString("Hien & Daniel", 200, 50);
+		rotated2.getProcessor().drawString("Hien & Daniel", 200, 30);
 		rotated2.show();
 		new FileSaver(rotated2).saveAsPng("Tiefenbilder/out/rotatedRuler.png");
-
 	}
 
 }
