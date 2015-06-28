@@ -36,14 +36,14 @@ public class RotateWithDepthInformation {
 	 * @param zVal 
 	 * @return rotated z-value
 	 */
-	public static double rotate45degrees (int axis, int zVal) {
+	public static double rotate45degrees (int axis, int zVal) { // ggf. statt axis / 2 => axis damit das Bild nicht 1/4 wird
 		return (axis + (Math.sqrt(zVal * zVal)/2));
 	}
 	
 	/**
 	 * rotate an image in x/y - direction around 45 degrees
 	 * @param orig original image
-	 * @param heat heapmap with depth-information
+	 * @param heat heatmap with depth-information
 	 * @return rotated image 
 	 */
 	public static ImagePlus rotate(ImagePlus orig, ImagePlus heat) {
